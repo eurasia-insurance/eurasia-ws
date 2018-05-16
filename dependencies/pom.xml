@@ -21,26 +21,8 @@
 			<optional>false</optional>
 		</dependency>
 		<dependency>
-			<groupId>tech.lapsa.java</groupId>
-			<artifactId>java-jaxb-commons</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
 			<groupId>tech.lapsa.javax</groupId>
 			<artifactId>javax-rs-commons</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>tech.lapsa.javax</groupId>
-			<artifactId>javax-cdi-commons</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>tech.lapsa.javax</groupId>
-			<artifactId>javax-validation-commons</artifactId>
 			<scope>compile</scope>
 			<optional>false</optional>
 		</dependency>
@@ -48,12 +30,6 @@
 			<groupId>tech.lapsa.payara</groupId>
 			<artifactId>payara-jersey-extensions</artifactId>
 			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>tech.lapsa.payara</groupId>
-			<artifactId>payara-hibernate-validation</artifactId>
-			<scope>runtime</scope>
 			<optional>false</optional>
 		</dependency>
 		<dependency>

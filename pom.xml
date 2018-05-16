@@ -26,12 +26,8 @@
 		<javax-javaee-bom.version>7.0a</javax-javaee-bom.version>
 		<payara-bom.version>4.1.2-2</payara-bom.version>
 		<!-- tech -->
-		<java-jaxb-commons.version>1.1</java-jaxb-commons.version>
 		<javax-rs-commons.version>1.1</javax-rs-commons.version>
-		<javax-cdi-commons.version>1.2</javax-cdi-commons.version>
-		<javax-validation-commons.version>1.1</javax-validation-commons.version>
 		<payara-jersey-extensions.version>1.1</payara-jersey-extensions.version>
-		<payara-hibernate-validation.version>1.1.1</payara-hibernate-validation.version>
 		<!-- EJB clients -->
 		<eurasia-facade-client.version>1.0-SNAPSHOT</eurasia-facade-client.version>
 	</properties>
@@ -86,34 +82,14 @@
 				<version>${eurasia-facade-client.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>tech.lapsa.java</groupId>
-				<artifactId>java-jaxb-commons</artifactId>
-				<version>${java-jaxb-commons.version}</version>
-			</dependency>
-			<dependency>
 				<groupId>tech.lapsa.javax</groupId>
 				<artifactId>javax-rs-commons</artifactId>
 				<version>${javax-rs-commons.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>tech.lapsa.javax</groupId>
-				<artifactId>javax-cdi-commons</artifactId>
-				<version>${javax-cdi-commons.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>tech.lapsa.javax</groupId>
-				<artifactId>javax-validation-commons</artifactId>
-				<version>${javax-validation-commons.version}</version>
-			</dependency>
-			<dependency>
 				<groupId>tech.lapsa.payara</groupId>
 				<artifactId>payara-jersey-extensions</artifactId>
 				<version>${payara-jersey-extensions.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>tech.lapsa.payara</groupId>
-				<artifactId>payara-hibernate-validation</artifactId>
-				<version>${payara-hibernate-validation.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

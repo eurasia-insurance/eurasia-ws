@@ -36,16 +36,6 @@
 			<artifactId>javax.ws.rs-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.mail</groupId>
-			<artifactId>javax.mail</artifactId>
-			<scope>provided</scope>
-		</dependency>
 		<!-- Payara -->
 		<dependency>
 			<groupId>org.glassfish.jersey.media</groupId>
@@ -60,11 +50,6 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>

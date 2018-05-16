@@ -5,21 +5,19 @@ import static tech.lapsa.javax.rs.utility.RESTUtils.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.annotation.security.PermitAll;
 import javax.ejb.EJB;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
 
-import com.lapsa.international.localization.LocalizationLanguage;
 import com.lapsa.kz.country.KZCity;
 
 import tech.lapsa.eurasia.domain.CompanyContactEmail;
@@ -31,38 +29,25 @@ import tech.lapsa.eurasia.ws.jaxb.entity.XmlPOS;
 import tech.lapsa.eurasia.ws.jaxb.entity.XmlPOSCity;
 import tech.lapsa.eurasia.ws.jaxb.entity.XmlPOSEmail;
 import tech.lapsa.eurasia.ws.jaxb.entity.XmlPOSPhone;
-import tech.lapsa.eurasia.ws.rs.entity.LocalizationLanguageWrapped;
-import tech.lapsa.javax.validation.NotNullValue;
 
 @Path("/pos")
 @Produces({ MediaType.APPLICATION_JSON })
 @PermitAll
-public class POSWS extends ALanguageDetectorWS {
-
-    @Context
-    private UriInfo uriInfo;
+public class POSWS {
 
     @EJB
     private CompanyPointOfSaleFacadeRemote posFacade;
 
     @GET
-    @Path("/all/{lang}")
-    public Response getAllOwnAvailableLangPath(
-	    @PathParam("lang") @NotNullValue final LocalizationLanguageWrapped queryLangWrapped) {
-	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
-
-	return responseOk(all(lang), lang.getLocale());
-    }
-
-    @GET
     @Path("/all")
-    public Response getAllOwnAvailableLangDefault(
-	    @QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped) {
-	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
-	return responseOk(all(lang), lang.getLocale());
+    public Response allGET(@Context HttpHeaders headers) {
+	final Locale locale = headers.getAcceptableLanguages().isEmpty()
+		? Locale.getDefault()
+		: headers.getAcceptableLanguages().get(0);
+	return responseOk(_getAll(locale), locale);
     }
 
-    private Object all(final LocalizationLanguage language) {
+    private List<XmlPOSCity> _getAll(final Locale locale) {
 
 	final List<CompanyPointOfSale> poses = posFacade.findAllOwnOffices();
 
@@ -80,7 +65,7 @@ public class POSWS extends ALanguageDetectorWS {
 	for (final KZCity kzc : order) {
 	    final XmlPOSCity city = new XmlPOSCity();
 	    result.add(city);
-	    city.setName(kzc.few(language.getLocale()));
+	    city.setName(kzc.few(locale));
 
 	    {
 		final List<XmlPOS> list1 = new ArrayList<>();
@@ -88,8 +73,8 @@ public class POSWS extends ALanguageDetectorWS {
 		    final XmlPOS pos = new XmlPOS();
 		    list1.add(pos);
 		    pos.setId(cpos.getId());
-		    pos.setName(cpos.few(language.getLocale()));
-		    pos.setAddress(cpos.getAddress().few(language.getLocale()));
+		    pos.setName(cpos.few(locale));
+		    pos.setAddress(cpos.getAddress().few(locale));
 		    pos.setDeliveryServiceEnable(cpos.isDeliveryServicesAvailable());
 		    pos.setPickupServiceAvailable(cpos.isPickupAvailable());
 
@@ -104,7 +89,7 @@ public class POSWS extends ALanguageDetectorWS {
 			for (final CompanyContactPhone ccp : cpos.getPhones()) {
 			    final XmlPOSPhone phone = new XmlPOSPhone();
 			    list2.add(phone);
-			    phone.setType(ccp.getPhoneType().regular(language.getLocale()));
+			    phone.setType(ccp.getPhoneType().regular(locale));
 			    phone.setFullNumber(ccp.getPhone().getFormatted());
 			}
 			pos.setPhones(list2.toArray(new XmlPOSPhone[0]));
