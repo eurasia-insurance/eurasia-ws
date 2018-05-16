@@ -29,7 +29,7 @@
 		<javax-rs-commons.version>1.1</javax-rs-commons.version>
 		<payara-jersey-extensions.version>1.1</payara-jersey-extensions.version>
 		<!-- EJB clients -->
-		<eurasia-facade-client.version>1.0-SNAPSHOT</eurasia-facade-client.version>
+		<eurasia-facade-client.version>1.0</eurasia-facade-client.version>
 	</properties>
 
 	<dependencyManagement>
