@@ -22,14 +22,14 @@
 
 	<properties>
 		<!-- BOMS -->
-		<java-commons.version>20190110</java-commons.version>
-		<javax-javaee-bom.version>20190110</javax-javaee-bom.version>
-		<payara-bom.version>20190110</payara-bom.version>
+		<java-commons.version>CURRENT-SNAPSHOT</java-commons.version>
+		<javax-javaee-bom.version>CURRENT-SNAPSHOT</javax-javaee-bom.version>
+		<payara-bom.version>CURRENT-SNAPSHOT</payara-bom.version>
 		<!-- tech -->
-		<javax-rs-commons.version>20190110</javax-rs-commons.version>
-		<payara-jersey-extensions.version>20190110</payara-jersey-extensions.version>
+		<javax-rs-commons.version>CURRENT-SNAPSHOT</javax-rs-commons.version>
+		<payara-jersey-extensions.version>CURRENT-SNAPSHOT</payara-jersey-extensions.version>
 		<!-- EJB clients -->
-		<eurasia-facade-client.version>20190110</eurasia-facade-client.version>
+		<eurasia-facade-client.version>CURRENT-SNAPSHOT</eurasia-facade-client.version>
 	</properties>
 
 	<dependencyManagement>
