@@ -24,7 +24,6 @@ import tech.lapsa.eurasia.domain.CompanyContactEmail;
 import tech.lapsa.eurasia.domain.CompanyContactPhone;
 import tech.lapsa.eurasia.domain.CompanyPointOfSale;
 import tech.lapsa.eurasia.facade.CompanyPointOfSaleFacade.CompanyPointOfSaleFacadeRemote;
-import tech.lapsa.eurasia.ws.jaxb.entity.XmlGeo;
 import tech.lapsa.eurasia.ws.jaxb.entity.XmlPOS;
 import tech.lapsa.eurasia.ws.jaxb.entity.XmlPOSCity;
 import tech.lapsa.eurasia.ws.jaxb.entity.XmlPOSEmail;
@@ -49,7 +48,7 @@ public class POSWS {
 
     private List<XmlPOSCity> _getAll(final Locale locale) {
 
-	final List<CompanyPointOfSale> poses = posFacade.findAllOwnOffices();
+	final List<CompanyPointOfSale> poses = posFacade.findAllAvailable();
 
 	final List<KZCity> order = new ArrayList<>();
 	final Map<KZCity, List<CompanyPointOfSale>> cityMap = new HashMap<>();
@@ -75,14 +74,6 @@ public class POSWS {
 		    pos.setId(cpos.getId());
 		    pos.setName(cpos.few(locale));
 		    pos.setAddress(cpos.getAddress().few(locale));
-		    pos.setDeliveryServiceEnable(cpos.isDeliveryServicesAvailable());
-		    pos.setPickupServiceAvailable(cpos.isPickupAvailable());
-
-		    if (cpos.getGeoPoint() != null) {
-			pos.setGeoPoint(new XmlGeo());
-			pos.getGeoPoint().setLat(cpos.getGeoPoint().getLatitude());
-			pos.getGeoPoint().setLng(cpos.getGeoPoint().getLongitude());
-		    }
 
 		    {
 			final List<XmlPOSPhone> list2 = new ArrayList<>();
